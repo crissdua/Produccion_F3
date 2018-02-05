@@ -177,7 +177,9 @@ Public Class FrmP
                                 Dim cont1 As Integer
                                 cont1 = 0
                                 Do While cont1 < Convert.ToInt32(quantityimp.Item(conts))
-                                    imprime(itemsimp.Item(conts), itemname, anchoimp.Item(conts), pesoreal, itemsimp.Item(conts), "heat", "coil", postdate, ComboBox1.Text)
+                                    If Convert.ToInt32(quantityimp.Item(conts)) > 0 Then
+                                        imprime(itemsimp.Item(conts) & "-" & cont1 + 1, itemname, anchoimp.Item(conts), pesoreal, itemsimp.Item(conts), "heat", "coil", postdate, ComboBox1.Text)
+                                    End If
                                     cont1 += cont1 + 1
                                 Loop
                                 vueltas = vueltas - 1
@@ -227,7 +229,7 @@ Public Class FrmP
         Report1.SetParameterValue("fechacorte", Now.ToShortDateString)
         Report1.SetParameterValue("turno", turnos)
         'CrystalReportViewer1.ReportSource = Report1
-        Report1.PrintToPrinter(1, False, 0, 0)
+        'Report1.PrintToPrinter(1, False, 0, 0)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
