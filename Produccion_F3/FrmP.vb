@@ -8,7 +8,6 @@ Imports CrystalDecisions.ReportSource
 Public Class FrmP
 #Region "Variables"
     Public con As New Conexion
-    Public itemcode As String
     Dim valBarCode As String
     Dim oCompany As SAPbobsCOM.Company
     Dim connectionString As String = Conexion.ObtenerConexion.ConnectionString
@@ -20,6 +19,10 @@ Public Class FrmP
     Public Shared itemsimp As New List(Of String)
     Public Shared quantityimp As New List(Of Integer)
     Public Shared anchoimp As New List(Of Double)
+    Public Shared itemcode As New List(Of String)
+    Public Shared itemname As New List(Of String)
+    Public Shared peso As New List(Of String)
+    Public Shared comment As New List(Of String)
     Public Shared wo As SAPbobsCOM.ProductionOrders
 #End Region
     Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
@@ -66,12 +69,14 @@ Public Class FrmP
         Button4.Visible = True
         Button5.Visible = True
         DGV3.Visible = True
-        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T2.ItemName, T0.PlannedQty FROM OWOR T0 inner join OITM T2 on T0.ItemCode = T2.ItemCode where T0.DocNum= '" + txtOrder.Text + "'", con.ObtenerConexion())
+        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T2.ItemName, T0.DueDate, T0.U_Ancho_Tira, T0.PlannedQty FROM OWOR T0 inner join OITM T2 on T0.ItemCode = T2.ItemCode where T0.DocNum= '" + txtOrder.Text + "'", con.ObtenerConexion())
         Dim DT_dat As System.Data.DataTable = New System.Data.DataTable()
         SQL_da.Fill(DT_dat)
         Label3.Text = DT_dat.Rows(0).Item("ItemCode").ToString
         Label5.Text = DT_dat.Rows(0).Item("ItemName").ToString
         Label7.Text = DT_dat.Rows(0).Item("PlannedQty").ToString & " TM"
+        Label10.Text = DT_dat.Rows(0).Item("DueDate").ToString
+        Label12.Text = DT_dat.Rows(0).Item("U_Ancho_Tira").ToString
         con.ObtenerConexion.Close()
 
         Dim turnoAM_I As DateTime = CType("6:00:00 AM", DateTime)
@@ -91,7 +96,7 @@ Public Class FrmP
     End Sub
 
     Private Sub txtOrder_TextChanged(sender As Object, e As EventArgs) Handles txtOrder.TextChanged
-        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T0.BaseQty, T0.U_ancho,T0.U_tiras,T0.U_peso,isnull(T0.LineNum,0) FROM WOR1 T0 where T0.[DocEntry] like '" + txtOrder.Text + "%'", con.ObtenerConexion())
+        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode,T0.BaseQty,T0.U_lotes, T0.U_ancho,T0.U_tiras,T0.U_peso,isnull(T0.LineNum,0) FROM WOR1 T0 where T0.[DocEntry] like '" + txtOrder.Text + "%'", con.ObtenerConexion())
         Dim DT_dat As System.Data.DataTable = New System.Data.DataTable()
         SQL_da.Fill(DT_dat)
         DGV2.DataSource = DT_dat
@@ -106,10 +111,6 @@ Public Class FrmP
         Dim oRecordSet As SAPbobsCOM.Recordset
         Dim objectCode As Integer
 
-        Dim itemname As String
-        Dim pesoreal As Double
-        Dim postdate As String
-
         Try
             Dim result As Integer = MessageBox.Show("Desea Ingresar la Orden?", "Atencion", MessageBoxButtons.YesNoCancel)
             If result = DialogResult.Cancel Then
@@ -121,15 +122,11 @@ Public Class FrmP
                 For Each row As DataGridViewRow In DGV3.Rows
 
                     If con.Connected = True Then
-                        sql = ("select T0.DocEntry, T0.ItemCode, T1.itemName, T0.PlannedQty,T0.PostDate,T0.DueDate from OWOR T0 inner join OITM T1 on T0.itemcode = t1.itemcode where T0.Docnum = '" + DGV3.Rows(cont).Cells.Item(0).Value.ToString + "'")
+                        sql = ("select T0.DocEntry, T0.ItemCode, T0.PlannedQty,T0.PostDate,T0.DueDate from OWOR T0 inner join OITM T1 on T0.itemcode = t1.itemcode where T0.Docnum = '" + DGV3.Rows(cont).Cells.Item(0).Value.ToString + "'")
                         oRecordSet = con.oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                         oRecordSet.DoQuery(sql)
                         If oRecordSet.RecordCount > 0 Then
                             objectCode = oRecordSet.Fields.Item(0).Value
-                            itemcode = oRecordSet.Fields.Item(1).Value
-                            itemname = oRecordSet.Fields.Item(2).Value
-                            pesoreal = oRecordSet.Fields.Item(3).Value
-                            postdate = oRecordSet.Fields.Item(4).Value
                         End If
 
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(oRecordSet)
@@ -154,7 +151,7 @@ Public Class FrmP
                         Else
 
                             Dim items As String
-                            sql = ("select T0.U_lotes, T0.U_tiras, T0.U_ancho from wor1 T0 where T0.DocEntry = '" + objectCode.ToString + "'")
+                            sql = ("select T0.U_lotes, T0.U_tiras, T0.U_ancho,T0.itemcode,T1.itemname,T0.U_peso,T0.U_comment from wor1 T0 inner join oitm T1 on T1.itemcode = t0.itemcode where T0.DocEntry = '" + objectCode.ToString + "'")
                             'sql = ("SELECT DocEntry FROM WOR1 where DocEntry = " + objectCode + "")
                             oRecordSet = con.oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.BoRecordset)
                             oRecordSet.DoQuery(sql)
@@ -163,6 +160,10 @@ Public Class FrmP
                                 itemsimp.Add(oRecordSet.Fields.Item(0).Value)
                                 quantityimp.Add(oRecordSet.Fields.Item(1).Value)
                                 anchoimp.Add(oRecordSet.Fields.Item(2).Value)
+                                itemcode.Add(oRecordSet.Fields.Item(3).Value)
+                                itemname.Add(oRecordSet.Fields.Item(4).Value)
+                                peso.Add(oRecordSet.Fields.Item(5).Value)
+                                comment.Add(oRecordSet.Fields.Item(6).Value)
                                 oRecordSet.MoveNext()
                             Loop
 
@@ -178,15 +179,13 @@ Public Class FrmP
                                 cont1 = 0
                                 Do While cont1 < Convert.ToInt32(quantityimp.Item(conts))
                                     If Convert.ToInt32(quantityimp.Item(conts)) > 0 Then
-                                        imprime(itemsimp.Item(conts) & "-" & cont1 + 1, itemname, anchoimp.Item(conts), pesoreal, itemsimp.Item(conts), "heat", "coil", postdate, ComboBox1.Text)
+                                        imprime(itemsimp.Item(conts) & "-" & cont1 + 1, itemname.Item(cont), anchoimp.Item(conts), peso.Item(cont), itemsimp.Item(conts), "heat", "coil", comment.Item(cont), ComboBox1.Text, itemcode.Item(cont))
+                                        'itmcod As String, desc As String, anch As String, pes As String, batch As String, het As String, coi As String, comment As String, turnos As String
                                     End If
                                     cont1 += cont1 + 1
                                 Loop
                                 vueltas = vueltas - 1
                             Loop
-
-
-                            itemcode = String.Empty
                             items = String.Empty
                             Panel1.Visible = False
                             DGV2.Visible = True
@@ -213,23 +212,28 @@ Public Class FrmP
         barcode = String.Format("*{0}*", code)
         Return barcode
     End Function
-    Private Sub imprime(bat As String, desc As String, anch As String, pes As String, bob As String, het As String, coi As String, ordr As String, turnos As String)
+    Private Sub imprime(itmcod As String, desc As String, anch As String, pes As String, batch As String, het As String, coi As String, comment As String, turnos As String, itmscod As String)
         Dim Report1 As New CrystalDecisions.CrystalReports.Engine.ReportDocument()
         Report1.PrintOptions.PaperOrientation = PaperOrientation.Portrait
         Report1.Load(Application.StartupPath + "\Report\Informe.rpt", CrystalDecisions.Shared.OpenReportMethod.OpenReportByDefault.OpenReportByDefault)
-        Report1.SetParameterValue("CodBatch", itemcode)
-        'Report1.SetParameterValue("CodBatch", txtBarcode.Text)
-        Report1.SetParameterValue("descripcion", desc)
-        Report1.SetParameterValue("anchotira", anch)
-        Report1.SetParameterValue("pesoreal", pes)
-        Report1.SetParameterValue("bobina", bob)
+        ''-----------------------------------------ENCABEZADO NO CAMBIA POR IMPRESION------------------------------------------
+        Report1.SetParameterValue("itemcode", Label3.Text)
+        Report1.SetParameterValue("u_ancho", Label12.Text)
+        Report1.SetParameterValue("docnum", Label1.Text)
+        Report1.SetParameterValue("docdate", Label10.Text)
+        Report1.SetParameterValue("descripcionEnc", Label5.Text)
+        Report1.SetParameterValue("pesoEnc", Label7.Text)
+        ''------------------------------------------DETALLE TRAE DATOS POR PARAMETROS------------------------------------------
+        Report1.SetParameterValue("CodBatch", itmcod) 'col4
+        Report1.SetParameterValue("descripcion", desc) 'col2
+        Report1.SetParameterValue("pesoreal", pes) 'col5
+        Report1.SetParameterValue("anchotira", anch) 'col6
+        Report1.SetParameterValue("bobina", itmscod) 'col1
         Report1.SetParameterValue("heat", het)
         Report1.SetParameterValue("coil", coi)
-        Report1.SetParameterValue("ordencorte", ordr)
-        Report1.SetParameterValue("fechacorte", Now.ToShortDateString)
         Report1.SetParameterValue("turno", turnos)
         'CrystalReportViewer1.ReportSource = Report1
-        'Report1.PrintToPrinter(1, False, 0, 0)
+        Report1.PrintToPrinter(1, False, 0, 0)
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
