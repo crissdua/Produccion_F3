@@ -33,11 +33,9 @@ Public Class FrmP
         End Get
     End Property
 
-    Public Sub New(ByVal user As String)
+    Public Sub New()
         MyBase.New()
         InitializeComponent()
-        '  Note which form has called this one
-        ToolStripStatusLabel1.Text = user
     End Sub
 
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
@@ -69,7 +67,7 @@ Public Class FrmP
         Button4.Visible = True
         Button5.Visible = True
         DGV3.Visible = True
-        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T2.ItemName, T0.DueDate, T0.U_Ancho_Tira, T0.PlannedQty FROM OWOR T0 inner join OITM T2 on T0.ItemCode = T2.ItemCode where T0.DocNum= '" + txtOrder.Text + "'", con.ObtenerConexion())
+        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T2.ItemName, convert(varchar(10),convert(date,T0.DueDate,106),103) as DueDate , T0.U_Ancho_Tira, T0.PlannedQty FROM OWOR T0 inner join OITM T2 on T0.ItemCode = T2.ItemCode where T0.DocNum= '" + txtOrder.Text + "'", con.ObtenerConexion())
         Dim DT_dat As System.Data.DataTable = New System.Data.DataTable()
         SQL_da.Fill(DT_dat)
         Label3.Text = DT_dat.Rows(0).Item("ItemCode").ToString
@@ -88,15 +86,15 @@ Public Class FrmP
         result2 = DateTime.Compare(turnoAM_F, TimeOfDay.ToShortTimeString)
         If result = -1 Then
             If result2 = 1 Then
-                ComboBox1.Text = "AM"
+                ComboBox1.Text = "Turno 1"
             Else
-                ComboBox1.Text = "PM"
+                ComboBox1.Text = "Turno 2"
             End If
         End If
     End Sub
 
     Private Sub txtOrder_TextChanged(sender As Object, e As EventArgs) Handles txtOrder.TextChanged
-        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode,T0.BaseQty,T0.U_lotes, T0.U_ancho,T0.U_tiras,T0.U_peso,isnull(T0.LineNum,0) FROM WOR1 T0 where T0.[DocEntry] like '" + txtOrder.Text + "%'", con.ObtenerConexion())
+        Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode as 'Articulo',T0.PlannedQty as 'TM Requerido',T0.U_lotes as Lote, T0.U_ancho as Ancho,T0.U_tiras as 'Tiras a Reportar',T0.U_peso as 'Peso de Tira',isnull(T0.LineNum,0) as 'Linea' FROM WOR1 T0 where T0.[DocEntry] like '" + txtOrder.Text + "%'", con.ObtenerConexion())
         Dim DT_dat As System.Data.DataTable = New System.Data.DataTable()
         SQL_da.Fill(DT_dat)
         DGV2.DataSource = DT_dat
@@ -110,6 +108,15 @@ Public Class FrmP
         Dim sql As String
         Dim oRecordSet As SAPbobsCOM.Recordset
         Dim objectCode As Integer
+
+
+        itemsimp.Clear()
+        quantityimp.Clear()
+        anchoimp.Clear()
+        itemcode.Clear()
+        itemname.Clear()
+        peso.Clear()
+        comment.Clear()
 
         Try
             Dim result As Integer = MessageBox.Show("Desea Ingresar la Orden?", "Atencion", MessageBoxButtons.YesNoCancel)
@@ -149,7 +156,22 @@ Public Class FrmP
                         If oReturn <> 0 Then
                             MessageBox.Show(con.oCompany.GetLastErrorDescription)
                         Else
+                            Dim itemcodeE As String
+                            Dim itemnameE As String
+                            Dim plannedqtyE As String
+                            Dim duedateE As String
+                            Dim anchotiraE As String
+                            Dim SQL_da As SqlDataAdapter = New SqlDataAdapter("SELECT T0.ItemCode, T2.ItemName, T0.DueDate, T0.U_Ancho_Tira, T0.PlannedQty FROM OWOR T0 inner join OITM T2 on T0.ItemCode = T2.ItemCode where T0.DocNum= '" + txtOrder.Text + "'", con.ObtenerConexion())
+                            Dim DT_dat As System.Data.DataTable = New System.Data.DataTable()
+                            SQL_da.Fill(DT_dat)
+                            itemcodeE = DT_dat.Rows(0).Item("ItemCode").ToString
+                            itemnameE = DT_dat.Rows(0).Item("ItemName").ToString
+                            plannedqtyE = DT_dat.Rows(0).Item("PlannedQty").ToString & " TM"
+                            duedateE = DT_dat.Rows(0).Item("DueDate").ToString
+                            anchotiraE = DT_dat.Rows(0).Item("U_Ancho_Tira").ToString
+                            con.ObtenerConexion.Close()
 
+                            'itemcodeE, itemnameE, plannedqtyE, duedateE, anchotiraE
                             Dim items As String
                             sql = ("select T0.U_lotes, T0.U_tiras, T0.U_ancho,T0.itemcode,T1.itemname,T0.U_peso,T0.U_comment from wor1 T0 inner join oitm T1 on T1.itemcode = t0.itemcode where T0.DocEntry = '" + objectCode.ToString + "'")
                             'sql = ("SELECT DocEntry FROM WOR1 where DocEntry = " + objectCode + "")
@@ -178,11 +200,20 @@ Public Class FrmP
                                 Dim cont1 As Integer
                                 cont1 = 0
                                 Do While cont1 < Convert.ToInt32(quantityimp.Item(conts))
-                                    If Convert.ToInt32(quantityimp.Item(conts)) > 0 Then
-                                        imprime(itemsimp.Item(conts) & "-" & cont1 + 1, itemname.Item(cont), anchoimp.Item(conts), peso.Item(cont), itemsimp.Item(conts), "heat", "coil", comment.Item(cont), ComboBox1.Text, itemcode.Item(cont))
+                                    If Convert.ToInt32(quantityimp.Item(conts)) >= 0 Then
+                                        Dim SQL_heatcoil As SqlDataAdapter = New SqlDataAdapter("select isnull(U_Coi,'0') as coil,isnull(U_Heat,'0') as heat from obtn where DistNumber = '" + itemsimp.Item(conts) + "'", con.ObtenerConexion())
+                                        Dim DT_heatcoil As System.Data.DataTable = New System.Data.DataTable()
+                                        SQL_heatcoil.Fill(DT_heatcoil)
+                                        Dim heat As String
+                                        Dim coil As String
+                                        heat = DT_heatcoil.Rows(0).Item("coil").ToString
+                                        coil = DT_heatcoil.Rows(0).Item("heat").ToString
+                                        con.ObtenerConexion.Close()
+
+                                        imprime(itemsimp.Item(conts) & "-" & cont1 + 1, itemname.Item(cont), anchoimp.Item(conts), peso.Item(cont), itemsimp.Item(conts), heat, coil, comment.Item(cont), ComboBox1.Text, itemcode.Item(cont), itemcodeE, itemnameE, plannedqtyE, duedateE, anchotiraE, txtOrder.Text)
                                         'itmcod As String, desc As String, anch As String, pes As String, batch As String, het As String, coi As String, comment As String, turnos As String
                                     End If
-                                    cont1 += cont1 + 1
+                                    cont1 = cont1 + 1
                                 Loop
                                 vueltas = vueltas - 1
                             Loop
@@ -205,6 +236,9 @@ Public Class FrmP
             MsgBox("Error: " + ex.Message.ToString)
             con.oCompany.Disconnect()
             con.oCompany = Nothing
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(oRecordSet)
+            oRecordSet = Nothing
+            GC.Collect()
         End Try
     End Sub
     Private Function FormatBarCode(code As String)
@@ -212,17 +246,17 @@ Public Class FrmP
         barcode = String.Format("*{0}*", code)
         Return barcode
     End Function
-    Private Sub imprime(itmcod As String, desc As String, anch As String, pes As String, batch As String, het As String, coi As String, comment As String, turnos As String, itmscod As String)
+    Private Sub imprime(itmcod As String, desc As String, anch As String, pes As String, batch As String, het As String, coi As String, comment As String, turnos As String, itmscod As String, itemcodeE As String, itemnameE As String, plannedqtyE As String, duedateE As String, anchotiraE As String, docnum As String)
         Dim Report1 As New CrystalDecisions.CrystalReports.Engine.ReportDocument()
         Report1.PrintOptions.PaperOrientation = PaperOrientation.Portrait
-        Report1.Load(Application.StartupPath + "\Report\Informe.rpt", CrystalDecisions.Shared.OpenReportMethod.OpenReportByDefault.OpenReportByDefault)
+        Report1.Load(Application.StartupPath + "\Report\InformeF3.rpt", CrystalDecisions.Shared.OpenReportMethod.OpenReportByDefault.OpenReportByDefault)
         ''-----------------------------------------ENCABEZADO NO CAMBIA POR IMPRESION------------------------------------------
-        Report1.SetParameterValue("itemcode", Label3.Text)
-        Report1.SetParameterValue("u_ancho", Label12.Text)
-        Report1.SetParameterValue("docnum", Label1.Text)
-        Report1.SetParameterValue("docdate", Label10.Text)
-        Report1.SetParameterValue("descripcionEnc", Label5.Text)
-        Report1.SetParameterValue("pesoEnc", Label7.Text)
+        Report1.SetParameterValue("itemcode", itemcodeE)
+        Report1.SetParameterValue("u_ancho", anchotiraE)
+        Report1.SetParameterValue("docnum", docnum)
+        Report1.SetParameterValue("docdate", duedateE)
+        Report1.SetParameterValue("descripcionEnc", itemnameE)
+        Report1.SetParameterValue("pesoEnc", plannedqtyE)
         ''------------------------------------------DETALLE TRAE DATOS POR PARAMETROS------------------------------------------
         Report1.SetParameterValue("CodBatch", itmcod) 'col4
         Report1.SetParameterValue("descripcion", desc) 'col2
@@ -232,6 +266,7 @@ Public Class FrmP
         Report1.SetParameterValue("heat", het)
         Report1.SetParameterValue("coil", coi)
         Report1.SetParameterValue("turno", turnos)
+        Report1.SetParameterValue("comments", comment)
         'CrystalReportViewer1.ReportSource = Report1
         Report1.PrintToPrinter(1, False, 0, 0)
     End Sub
@@ -266,7 +301,6 @@ Public Class FrmP
             DGV.DataSource = Nothing
             DGV2.DataSource = Nothing
             DGV3.Rows.Clear()
-            MessageBox.Show("Inicie un objeto nuevo")
         End If
         Panel1.Visible = False
         DGV2.Visible = False
@@ -286,5 +320,20 @@ Public Class FrmP
         DGV3.Rows.Remove(DGV3.CurrentRow)
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim result As Integer = MessageBox.Show("Desea salir del modulo?", "Atencion", MessageBoxButtons.YesNo)
+        If result = DialogResult.No Then
+            MessageBox.Show("Puede continuar")
+        ElseIf result = DialogResult.Yes Then
+            Try
+                con.oCompany.Disconnect()
+            Catch
+            End Try
+            Me.Hide()
+        End If
+    End Sub
 
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class
