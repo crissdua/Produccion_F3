@@ -22,6 +22,11 @@ Produccion_F3
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
+<member name="P:Produccion_F3.My.Resources.Resources.fondoGrande">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:Produccion_F3.My.Resources.Resources.gears">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

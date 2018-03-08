@@ -56,6 +56,7 @@ Partial Class FrmP
         '
         'Button5
         '
+        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button5.BackColor = System.Drawing.SystemColors.Menu
         Me.Button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray
         Me.Button5.FlatAppearance.BorderSize = 2
@@ -63,9 +64,9 @@ Partial Class FrmP
         Me.Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(595, 196)
+        Me.Button5.Location = New System.Drawing.Point(658, 267)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(26, 171)
+        Me.Button5.Size = New System.Drawing.Size(26, 196)
         Me.Button5.TabIndex = 92
         Me.Button5.Text = "<"
         Me.Button5.UseVisualStyleBackColor = False
@@ -75,12 +76,14 @@ Partial Class FrmP
         '
         Me.DGV3.AllowUserToAddRows = False
         Me.DGV3.AllowUserToDeleteRows = False
+        Me.DGV3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DGV3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGV3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ordenes})
-        Me.DGV3.Location = New System.Drawing.Point(627, 12)
+        Me.DGV3.Location = New System.Drawing.Point(690, 33)
         Me.DGV3.Name = "DGV3"
         Me.DGV3.ReadOnly = True
-        Me.DGV3.Size = New System.Drawing.Size(118, 355)
+        Me.DGV3.Size = New System.Drawing.Size(118, 428)
         Me.DGV3.TabIndex = 91
         Me.DGV3.Visible = False
         '
@@ -92,6 +95,7 @@ Partial Class FrmP
         '
         'Button4
         '
+        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button4.BackColor = System.Drawing.SystemColors.Menu
         Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.DimGray
         Me.Button4.FlatAppearance.BorderSize = 2
@@ -99,9 +103,9 @@ Partial Class FrmP
         Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.ForestGreen
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.Location = New System.Drawing.Point(595, 15)
+        Me.Button4.Location = New System.Drawing.Point(658, 36)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(26, 175)
+        Me.Button4.Size = New System.Drawing.Size(26, 196)
         Me.Button4.TabIndex = 90
         Me.Button4.Text = ">"
         Me.Button4.UseVisualStyleBackColor = False
@@ -109,17 +113,20 @@ Partial Class FrmP
         '
         'ComboBox1
         '
+        Me.ComboBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"Turno 1", "Turno 2", "Corto"})
-        Me.ComboBox1.Location = New System.Drawing.Point(468, 8)
+        Me.ComboBox1.Location = New System.Drawing.Point(531, 33)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
         Me.ComboBox1.TabIndex = 89
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(426, 13)
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Location = New System.Drawing.Point(487, 36)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(38, 13)
         Me.Label8.TabIndex = 88
@@ -129,11 +136,14 @@ Partial Class FrmP
         '
         Me.DGV2.AllowUserToAddRows = False
         Me.DGV2.AllowUserToDeleteRows = False
+        Me.DGV2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DGV2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGV2.Location = New System.Drawing.Point(136, 217)
+        Me.DGV2.Location = New System.Drawing.Point(136, 240)
         Me.DGV2.Name = "DGV2"
         Me.DGV2.ReadOnly = True
-        Me.DGV2.Size = New System.Drawing.Size(453, 150)
+        Me.DGV2.Size = New System.Drawing.Size(516, 223)
         Me.DGV2.TabIndex = 87
         Me.DGV2.Visible = False
         '
@@ -212,7 +222,9 @@ Partial Class FrmP
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(12, 11)
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
+        Me.Label13.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label13.Location = New System.Drawing.Point(12, 33)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(63, 13)
         Me.Label13.TabIndex = 85
@@ -220,6 +232,8 @@ Partial Class FrmP
         '
         'Panel1
         '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label12)
@@ -233,9 +247,9 @@ Partial Class FrmP
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.txtOrder)
-        Me.Panel1.Location = New System.Drawing.Point(136, 29)
+        Me.Panel1.Location = New System.Drawing.Point(136, 52)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(453, 182)
+        Me.Panel1.Size = New System.Drawing.Size(516, 182)
         Me.Panel1.TabIndex = 84
         Me.Panel1.Visible = False
         '
@@ -277,34 +291,41 @@ Partial Class FrmP
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(202, 390)
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button3.BackgroundImage = Global.Produccion_F3.My.Resources.Resources.button
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button3.Location = New System.Drawing.Point(154, 469)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(89, 23)
+        Me.Button3.Size = New System.Drawing.Size(67, 23)
         Me.Button3.TabIndex = 83
         Me.Button3.Text = "Salir"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(107, 390)
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button2.BackgroundImage = Global.Produccion_F3.My.Resources.Resources.cancelar
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button2.Location = New System.Drawing.Point(83, 469)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(89, 23)
+        Me.Button2.Size = New System.Drawing.Size(67, 23)
         Me.Button2.TabIndex = 82
-        Me.Button2.Text = "Cancelar"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 390)
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button1.BackgroundImage = Global.Produccion_F3.My.Resources.Resources.crear
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button1.Location = New System.Drawing.Point(12, 470)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(89, 23)
+        Me.Button1.Size = New System.Drawing.Size(67, 23)
         Me.Button1.TabIndex = 81
-        Me.Button1.Text = "Aceptar"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(12, 29)
+        Me.TextBox2.Location = New System.Drawing.Point(12, 49)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(118, 20)
         Me.TextBox2.TabIndex = 80
@@ -313,18 +334,22 @@ Partial Class FrmP
         '
         Me.DGV.AllowUserToAddRows = False
         Me.DGV.AllowUserToDeleteRows = False
+        Me.DGV.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGV.Location = New System.Drawing.Point(12, 52)
+        Me.DGV.Location = New System.Drawing.Point(12, 75)
         Me.DGV.Name = "DGV"
         Me.DGV.ReadOnly = True
-        Me.DGV.Size = New System.Drawing.Size(118, 315)
+        Me.DGV.Size = New System.Drawing.Size(118, 388)
         Me.DGV.TabIndex = 79
         '
         'FrmP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(752, 425)
+        Me.BackgroundImage = Global.Produccion_F3.My.Resources.Resources.fondoGrande
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(815, 498)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.DGV3)
         Me.Controls.Add(Me.Button4)
@@ -338,6 +363,7 @@ Partial Class FrmP
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.DGV)
+        Me.DoubleBuffered = True
         Me.Name = "FrmP"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Impresion de Tiras"
