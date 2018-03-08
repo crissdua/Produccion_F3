@@ -68,20 +68,15 @@ C:\Users\Developer\Documents\Visual Studio 2015\Projects\Produccion_F3\Produccio
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Produccion_F3\Produccion_F3\bin\Debug\stdole.dll
 C:\Users\Developer\Documents\Visual Studio 2015\Projects\Produccion_F3\Produccion_F3\bin\Debug\ShockwaveFlashObjects.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbprojResolveAssemblyReference.cache
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Interop.SAPbobsCOM.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Interop.SAPbouiCOM.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbproj.ResolveComReference.cache
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.FrmP.resources
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.Resources.resources
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbproj.GenerateResource.Cache
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.exe
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.xml
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.pdb
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.exe.config
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.exe
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.pdb
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.xml
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Data.AdoDotNetInterop.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Windows.Forms.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
@@ -93,13 +88,18 @@ C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Crysta
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\log4net.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\FlashControlV71.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\stdole.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\ShockwaveFlashObjects.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Data.AdoDotNetInterop.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportSource.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Shared.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Windows.Forms.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\log4net.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbprojResolveAssemblyReference.cache
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Interop.SAPbobsCOM.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Interop.SAPbouiCOM.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbproj.ResolveComReference.cache
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.FrmP.resources
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.Resources.resources
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.vbproj.GenerateResource.Cache
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.exe
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.xml
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.pdb
