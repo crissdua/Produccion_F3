@@ -73,7 +73,6 @@ C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produc
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.pdb
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\Produccion_F3.xml
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Data.AdoDotNetInterop.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.ReportSource.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Shared.dll
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Windows.Forms.dll
@@ -103,3 +102,5 @@ C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produc
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.exe
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.xml
 C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\obj\Debug\Produccion_F3.pdb
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.CrystalReports.Design.dll
+C:\Users\Developer\Documents\GitHub\Produccion_F3\Produccion_F3\bin\Debug\CrystalDecisions.Web.dll

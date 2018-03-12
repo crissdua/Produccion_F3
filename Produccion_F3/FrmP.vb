@@ -201,7 +201,7 @@ Public Class FrmP
                                 cont1 = 0
                                 Do While cont1 < Convert.ToInt32(quantityimp.Item(conts))
                                     If Convert.ToInt32(quantityimp.Item(conts)) >= 0 Then
-                                        Dim SQL_heatcoil As SqlDataAdapter = New SqlDataAdapter("select isnull(U_Coi,'0') as coil,isnull(U_Heat,'0') as heat from obtn where DistNumber = '" + itemsimp.Item(conts) + "'", con.ObtenerConexion())
+                                        Dim SQL_heatcoil As SqlDataAdapter = New SqlDataAdapter("select  COALESCE(MAX(U_Coi), '0') as coil, COALESCE(MAX(U_Heat), '0') as heat from obtn where DistNumber ='" + itemsimp.Item(conts) + "'", con.ObtenerConexion())
                                         Dim DT_heatcoil As System.Data.DataTable = New System.Data.DataTable()
                                         SQL_heatcoil.Fill(DT_heatcoil)
                                         Dim heat As String
